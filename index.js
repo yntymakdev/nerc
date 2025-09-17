@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
 <div class="payment-info__footer">
   <div class="payment-info__buttons">
   <button class="btn-back">Назад</button>
-    <button class="btn-pay-main">Оплатить</button>
+  <button class="btn-pay-main">Оплатить</button>
   </div>
   <p>
     Внимание! Оплата производится по единому лицевому счёту за всех поставщиков. 
@@ -399,12 +399,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      const payActionBtn = document.querySelector(".payment-info__footer button");
+      const payActionBtn = document.querySelector(".btn-pay-main"); // именно Оплатить
       if (payActionBtn) {
         payActionBtn.addEventListener("click", () => {
-          window.open(data.deeplinkURL, "_blank");
+          if (data?.deeplinkURL) {
+            window.open(data.deeplinkURL, "_blank");
+          } else {
+            alert("Ссылка на оплату не найдена");
+          }
         });
       }
+
       // !!!!!!Кнопка "Скачать QR в галерею"
       // const qrDownloadBtn = document.getElementById("download-qr");
       // if (qrDownloadBtn) {
@@ -455,7 +460,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       // если input есть — очистим и задисейблим кнопку
       input.value = "";
-      submitBtn.disabled = true;
+      submitBtn.d;
     }
 
     // восстановить кнопку
@@ -496,7 +501,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const originalBtnText = submitBtn.textContent;
     submitBtn.textContent = "Подождите...";
-    submitBtn.disabled = true;
+    submitBtn.d;
 
     const body = { typeSupplier: userSelection.providerCode, account };
 
